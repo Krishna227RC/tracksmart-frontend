@@ -1,12 +1,24 @@
-# React + Vite
+# TrackSmart Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚚 TrackSmart is a universal logistics tracking dashboard built using **React**, **Tailwind CSS**, and **Vite**.
 
-Currently, two official plugins are available:
+### 🔧 Tech Stack
+- React + Vite
+- Tailwind CSS
+- React Router
+- Recharts
+- Lucide Icons
+- Leaflet (for live map tracking)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🚀 Features
+- Real-time shipment tracking dashboard
+- Smart analytics and visualizations
+- Live map-based shipment location view
+- Dynamic shipment filtering
+- Clean and responsive UI
 
-## Expanding the ESLint configuration
+### 📦 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
