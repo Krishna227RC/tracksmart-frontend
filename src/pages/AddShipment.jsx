@@ -11,6 +11,7 @@ export default function AddShipment() {
     eta: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -23,21 +24,28 @@ export default function AddShipment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
     try {
       const res = await axios.post("/api/shipments", formData);
       setMessage("✅ Shipment added successfully!");
-      setTimeout(() => navigate("/shipments"), 1000);
+      setTimeout(() => navigate("/shipments"), 1500);
     } catch (err) {
       setMessage("❌ " + (err.response?.data?.error || "Failed to add shipment."));
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-br from-white to-blue-50">
-      <h1 className="text-3xl font-bold text-indigo-800 mb-8 text-center">📦 Add New Shipment</h1>
+    <div className="min-h-screen p-8 bg-gradient-to-br from-white to-blue-50 animate-fade-in-up">
+      <h1 className="text-3xl font-extrabold text-indigo-800 mb-8 text-center">
+        📦 Add New Shipment
+      </h1>
+
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl mx-auto bg-white p-8 shadow-xl rounded-xl space-y-6"
+        className="max-w-xl mx-auto bg-white p-8 shadow-2xl rounded-xl space-y-6 transition-all duration-300"
       >
         {["id", "origin", "destination", "eta"].map((field) => (
           <div key={field}>
@@ -69,13 +77,22 @@ export default function AddShipment() {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition"
+          disabled={loading}
+          className={`w-full font-semibold py-3 rounded-lg transition text-white ${
+            loading ? "bg-indigo-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
+          }`}
         >
-          Add Shipment
+          {loading ? "Adding..." : "Add Shipment"}
         </button>
 
         {message && (
-          <div className="text-center mt-4 font-medium text-indigo-700">{message}</div>
+          <div
+            className={`text-center mt-4 font-medium ${
+              message.startsWith("✅") ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {message}
+          </div>
         )}
       </form>
     </div>
