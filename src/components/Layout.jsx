@@ -5,6 +5,7 @@ import {
   BarChart3,
   HelpCircle,
   LocateFixed,
+  PlusSquare,
 } from "lucide-react";
 
 export default function Layout() {
@@ -36,6 +37,18 @@ export default function Layout() {
             }
           >
             <PackageSearch size={18} /> Shipments
+          </NavLink>
+
+          {/* ✅ NEW: Add Shipment */}
+          <NavLink
+            to="/add-shipment"
+            className={({ isActive }) =>
+              `flex items-center gap-3 p-2 rounded hover:bg-indigo-700 transition ${
+                isActive ? "bg-indigo-700" : ""
+              }`
+            }
+          >
+            <PlusSquare size={18} /> Add Shipment
           </NavLink>
 
           <NavLink

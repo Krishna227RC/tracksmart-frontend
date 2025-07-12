@@ -10,15 +10,10 @@ export default function ShipmentDetails() {
   useEffect(() => {
     const fetchShipment = async () => {
       try {
-        const res = await axios.get(`/api/shipments`);
-        const match = res.data.find((s) => s.id === id);
-        if (match) {
-          setShipment(match);
-        } else {
-          setError("Shipment not found.");
-        }
+        const res = await axios.get(`/api/shipments/${id}`);
+        setShipment(res.data);
       } catch (err) {
-        setError("Failed to fetch shipment details.");
+        setError("❌ Failed to fetch shipment details.");
       }
     };
     fetchShipment();
@@ -27,7 +22,7 @@ export default function ShipmentDetails() {
   if (error) {
     return (
       <div className="p-10 text-center text-red-500 text-lg font-semibold">
-        ❌ {error}
+        {error}
       </div>
     );
   }
